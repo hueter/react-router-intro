@@ -21,19 +21,27 @@ const About = props => {
   );
 };
 
-const Contact = props => {
-  return (
-    <div>
-      <span>{JSON.stringify(props)}</span>
-      <h1>Do not contact me. I hate people</h1>
-    </div>
-  );
-};
-
 const Secret = props => {
   return (
     <div>
       <img src={props.gif} alt="a gif" />
+    </div>
+  );
+};
+
+const Topics = props => {
+  const stuff = ['politics', 'sports', 'music', 'coding'];
+  /**
+   * Programmatically generate routes for everything in 'stuff'
+   *  /topics/politics
+   *  /topics/sports
+   *  /topics/music
+   *  /topics/coding
+   */
+
+  return (
+    <div>
+      <h1>More Routes Here</h1>
     </div>
   );
 };
@@ -55,8 +63,16 @@ class App extends Component {
         </ul>
         <Route exact path="/" component={Welcome} />
         <Route exact path="/about" component={About} />
-        <Route exact path="/contact" component={Contact} />
-        <Route exact path="/contact" component={Contact} />
+        <Route
+          exact
+          path="/contact"
+          component={props => (
+            <div>
+              <span>{JSON.stringify(props)}</span>
+              <h1>Do not contact me. I hate people</h1>
+            </div>
+          )}
+        />
         <Route
           exact
           path="/secret"
@@ -67,6 +83,7 @@ class App extends Component {
             />
           )}
         />
+        <Route exact path="/topics" component={Topics} />
       </div>
     );
   }
