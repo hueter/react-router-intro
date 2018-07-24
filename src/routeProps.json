@@ -1,0 +1,22 @@
+{
+  "match": {
+    "path": "/contact",
+    "url": "/contact",
+    "isExact": true,
+    "params": {}
+  },
+  "location": {
+    "pathname": "/contact",
+    "search": "?name=whiskey",
+    "hash": ""
+  },
+  "history": {
+    "length": 18,
+    "action": "POP",
+    "location": {
+      "pathname": "/contact",
+      "search": "?name=whiskey",
+      "hash": ""
+    }
+  }
+}

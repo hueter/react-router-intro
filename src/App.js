@@ -65,10 +65,38 @@ const Topics = props => {
   );
 };
 
+/**
+ * fancy syntax
+   const Greet = ({ match }) => (
+    <div>
+      <h2>{`hello ${match.params.name}`}</h2>
+    </div>
+  );
+ */
+
+const Greet = props => {
+  return (
+    <div>
+      <h2>{`hello ${props.match.params.name}`}</h2>
+    </div>
+  );
+};
+
+const Greet2 = props => {
+  const params = new URLSearchParams(props.location.search);
+  const name = params.get('name');
+  return (
+    <div>
+      <h2>{`hola ${name || 'stranger'}`}</h2>
+    </div>
+  );
+};
+
 class App extends Component {
   render() {
     return (
       <div>
+        {/* this is the navbar that renders regardless of what route you're on since it's outside of the routes */}
         <ul>
           <li>
             <Link to="/">Home</Link>
@@ -82,6 +110,8 @@ class App extends Component {
         </ul>
         <Route exact path="/" component={Welcome} />
         <Route exact path="/about" component={About} />
+
+        {/* this one has the component defined in-line */}
         <Route
           exact
           path="/contact"
@@ -92,6 +122,7 @@ class App extends Component {
             </div>
           )}
         />
+        {/* this one uses a custom prop */}
         <Route
           exact
           path="/secret"
@@ -102,6 +133,22 @@ class App extends Component {
             />
           )}
         />
+        {/* this one is for using the same component with a different custom prop */}
+        <Route
+          exact
+          path="/secret2"
+          component={routeProps => (
+            <Secret
+              gif="https://media.giphy.com/media/yow6i0Zmp7G24/giphy.gif"
+              {...routeProps}
+            />
+          )}
+        />
+        {/* this one uses route parameters */}
+        <Route exact path="/hello/:name" component={Greet} />
+        {/* this one is designed for query strings */}
+        <Route exact path="/hola" component={Greet2} />
+        {/* this one is an example nested routing */}
         <Route path="/topics" component={Topics} />
       </div>
     );
