@@ -42,6 +42,25 @@ const Topics = props => {
   return (
     <div>
       <h1>More Routes Here</h1>
+      <br />
+      {stuff.map(i => (
+        <div key={i}>
+          <Link to={`/topics/${i}`}>{i}</Link>
+          <br />
+        </div>
+      ))}
+      {stuff.map(i => (
+        <Route
+          key={i}
+          exact
+          path={`/topics/${i}`}
+          component={props => (
+            <div>
+              <h1>{`The topic is ${i}`}</h1>
+            </div>
+          )}
+        />
+      ))}
     </div>
   );
 };
@@ -83,7 +102,7 @@ class App extends Component {
             />
           )}
         />
-        <Route exact path="/topics" component={Topics} />
+        <Route path="/topics" component={Topics} />
       </div>
     );
   }
